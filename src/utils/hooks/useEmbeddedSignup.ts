@@ -44,13 +44,17 @@ export const useEmbeddedSignup = (onFinish: (code: string, data: any) => void) =
         response_type: "code",
         override_default_response_type: true,
         extras: {
-          setup: {},
-          sessionInfoVersion: 2,
-          featureType: "whatsapp_business_app_onboarding",
+          setup: {
+            solutionID: setting?.solution_id,
+          },
+          featureType: "",
+          sessionInfoVersion: "3",
         },
       }
     );
-  }, [fbReady, setting?.configuration_id]);
+  }, [fbReady, setting?.configuration_id, setting?.solution_id]);
 
-  return { startSignup, fbReady };
+  const isConfigured = !!(setting?.app_id && setting?.configuration_id);
+
+  return { startSignup, fbReady, isConfigured };
 };

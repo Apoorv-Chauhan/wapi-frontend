@@ -8,6 +8,7 @@ export interface SettingResponse {
   app_id: string;
   app_secret: string;
   configuration_id: string;
+  solution_id: string;
 
   app_name: string;
   app_description: string;

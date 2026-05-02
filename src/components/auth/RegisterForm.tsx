@@ -37,6 +37,7 @@ export const RegisterPage = () => {
     initialValues: {
       fullName: "",
       email: "",
+      company: "",
       phone: "",
       country: "",
       countryCode: "",
@@ -49,6 +50,7 @@ export const RegisterPage = () => {
         const payload = {
           name: values.fullName,
           email: values.email,
+          company: values.company,
           phone: values.phone,
           country: values.country,
           countryCode: values.countryCode,
@@ -214,6 +216,20 @@ export const RegisterPage = () => {
                     </div>
                     {formik.touched.email && formik.errors.email && <p className="text-red-500 text-xs mt-1">{formik.errors.email}</p>}
                   </div>
+                </div>
+
+                {/* Company Name - Full Width */}
+                <div className="space-y-2 flex flex-col">
+                  <Label htmlFor="company" className="text-sm font-medium text-slate-700">
+                    Company Name <span className="text-slate-400 text-xs">(Optional)</span>
+                  </Label>
+                  <div className="relative group">
+                    <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-emerald-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                    <Input id="company" name="company" placeholder="Your Company Name" value={formik.values.company} onChange={formik.handleChange} onBlur={formik.handleBlur} className="pl-12 h-11 border border-(--input-border-color) focus:border-primary rounded-lg" />
+                  </div>
+                  {formik.touched.company && formik.errors.company && <p className="text-red-500 text-xs mt-1">{formik.errors.company}</p>}
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-4">

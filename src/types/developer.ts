@@ -31,6 +31,11 @@ export interface DeveloperSidebarProps {
   onSectionChange: (section: string) => void;
 }
 
+export interface DeveloperSidebarData {
+  activeTab: string;
+  onTabChange: (tab: string) => void;
+}
+
 export interface ApiDocViewerProps {
   section: string;
 }

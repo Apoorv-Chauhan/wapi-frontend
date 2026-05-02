@@ -22,12 +22,14 @@ export default function FacebookSDKProvider({ children }: { children: ReactNode 
 
   useEffect(() => {
     if (!setting?.app_id) return;
+
+    // If FB is already loaded and initialized, mark ready immediately
     if (window.FB) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setReady(true);
       return;
     }
 
+    // Set up the async init callback — called by the SDK once it loads
     window.fbAsyncInit = function () {
       window.FB.init({
         appId: setting.app_id,
@@ -35,7 +37,6 @@ export default function FacebookSDKProvider({ children }: { children: ReactNode 
         xfbml: false,
         version: "v21.0",
       });
-
       setReady(true);
     };
   }, [setting?.app_id]);
