@@ -118,13 +118,17 @@ const ConnectWABA = () => {
   const { startSignup, fbReady, isConfigured } = useEmbeddedSignup(handleFinish);
 
   const handleAisensyConnect = () => {
+    console.log('🔍 Connect Debug:', { fbReady, isConfigured, hasFB: !!window.FB });
+    
     // Primary: use Meta JS SDK popup (proper Embedded Signup flow)
     if (fbReady && isConfigured) {
+      console.log('✅ Using Facebook SDK popup');
       startSignup();
       return;
     }
 
     // Fallback: use the pre-generated AiSensy Embedded Signup URL
+    console.log('⚠️ Falling back to AiSensy URL');
     const embeddedSignupUrl = process.env.NEXT_PUBLIC_AISENSY_EMBEDDED_SIGNUP_URL;
     if (embeddedSignupUrl) {
       // Open as a popup window matching Meta's popup dimensions
